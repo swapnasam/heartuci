@@ -25,7 +25,7 @@ X = dataset.iloc[:,0 : length-2]
 Y = dataset.iloc[:,length - 1]
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.30, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.40, random_state = 0)
 
 print(X_test.shape)
 
@@ -74,13 +74,13 @@ for i in range (0,len(classifiers)):
     classifiers[i].fit(X_train, y_train)
     y_pred= classifiers[i].predict(X_test)
     acc = accuracy_score(y_test, y_pred)
-    model_name = type(classifiers[i]).__name__
-    print("%s" %(model_name))
-    print("Accuracy is",acc)
+    #model_name = type(classifiers[i]).__name__
+    #print("%s" %(model_name))
+    print("Accuracy with %s is %f\n" %(arr[i],acc))
     if(accuracy < acc):
         accuracy = acc
         best_model = arr[i]
     cm = confusion_matrix(y_test, y_pred)
-    print("Confusion Matrix  of %s is  \n%s " %(model_name, cm))
+    #print("Confusion Matrix  of %s is  \n%s " %(model_name, cm))
     
 print("Best model with Accuracy %f is %s" %(accuracy, best_model))
